@@ -1,15 +1,15 @@
+import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
-import { Router, Route, browserHistory, IndexRoute , hashHistory} from 'react-router'
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import configureStore from './store/configureStore'
+import Root from './Root'
 
-import Main from './modules/main/index'
-import About from './modules/about/index'
+export const store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
 
-//render((
-//<Router history={hashHistory}>
-//    <Route path="/" >
-//        <IndexRoute component={Main}/>
-//        <Route path="/about" component={About}/>
-//    </Route>
-//</Router>
-//), document.getElementById('content'))
+render(
+    <Root store={store} history={history} />,
+    document.getElementById('root'),
+)

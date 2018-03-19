@@ -24,4 +24,4 @@ buck-out/
 
 bundle.js
 npm-debug.log
-
+/.vscode
